@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
  * API CLIENT
  * ======================================================================= */
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:3001";
+const API_BASE = import.meta.env.VITE_API_BASE || "https://ai-toolkit-api-orcin.vercel.app";
 const REQUEST_TIMEOUT_MS = 30000;
 
 async function runTool(tool, input, options) {
