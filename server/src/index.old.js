@@ -323,23 +323,12 @@ app.post("/api/generate", async (req, res) => {
 /* =======================================================================
  * START SERVER
  * ===================================================================== */
-// Vercel handles the server lifecycle in production.
-// Local development still uses `npm run dev`.
-if (process.env.VERCEL) {
-  console.log("AI Toolkit server running on Vercel");
+app.listen(PORT, () => {
+  console.log(
+    `AI Toolkit server listening on http://localhost:${PORT}`
+  );
+
   console.log(
     `Accepting requests from CLIENT_ORIGIN=${CLIENT_ORIGIN}`
   );
-} else {
-  app.listen(PORT, () => {
-    console.log(
-      `AI Toolkit server listening on http://localhost:${PORT}`
-    );
-
-    console.log(
-      `Accepting requests from CLIENT_ORIGIN=${CLIENT_ORIGIN}`
-    );
-  });
-}
-
-export default app;
+});
