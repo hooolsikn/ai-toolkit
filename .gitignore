@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Secrets — never commit real .env files, only .env.example
+.env
+.env.local
+
+# Build output
+dist/
+build/
+
+# OS/editor noise
+.DS_Store
+*.log
