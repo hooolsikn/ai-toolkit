@@ -1,12 +1,11 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
-import { Analytics } from "@vercel/analytics/react";
 
 /* =========================================================================
  * API CLIENT
  * ======================================================================= */
 
-const API_BASE = import.meta.env.VITE_API_BASE || "https://ai-toolkit-api-orcin.vercel.app";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:3001";
 const REQUEST_TIMEOUT_MS = 30000;
 
 async function runTool(tool, input, options) {
@@ -134,98 +133,98 @@ const LANGUAGE_STORAGE_KEY = "ai-toolkit-language";
 
 const STRINGS = {
   ru: {
-    eyebrow: "Р‘Р•РЎРџР›РђРўРќР«Р• AI-РРќРЎРўР РЈРњР•РќРўР«",
+    eyebrow: "БЕСПЛАТНЫЕ AI-ИНСТРУМЕНТЫ",
     subtitle:
-      "Р§РµС‚С‹СЂРµ РїСЂРѕСЃС‚С‹С… AI-РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° РґР»СЏ С‚РµРєСЃС‚Р° вЂ” Р±РµСЃРїР»Р°С‚РЅРѕ, Р±РµР· СЂРµРіРёСЃС‚СЂР°С†РёРё.",
+      "Четыре простых AI-инструмента для текста — бесплатно, без регистрации.",
 
     tools: {
-      improve: "РЈР»СѓС‡С€РёС‚СЊ",
-      summarize: "РЎРѕРєСЂР°С‚РёС‚СЊ",
-      translate: "РџРµСЂРµРІРµСЃС‚Рё",
-      email: "РџРёСЃСЊРјРѕ",
+      improve: "Улучшить",
+      summarize: "Сократить",
+      translate: "Перевести",
+      email: "Письмо",
     },
 
     placeholders: {
-      improve: "Р’СЃС‚Р°РІСЊС‚Рµ С‚РµРєСЃС‚, РєРѕС‚РѕСЂС‹Р№ РЅСѓР¶РЅРѕ СѓР»СѓС‡С€РёС‚СЊвЂ¦",
-      summarize: "Р’СЃС‚Р°РІСЊС‚Рµ С‚РµРєСЃС‚, РєРѕС‚РѕСЂС‹Р№ РЅСѓР¶РЅРѕ СЃРѕРєСЂР°С‚РёС‚СЊвЂ¦",
-      translate: "Р’СЃС‚Р°РІСЊС‚Рµ С‚РµРєСЃС‚ РґР»СЏ РїРµСЂРµРІРѕРґР°вЂ¦",
+      improve: "Вставьте текст, который нужно улучшить…",
+      summarize: "Вставьте текст, который нужно сократить…",
+      translate: "Вставьте текст для перевода…",
       email:
-        "РћРїРёС€РёС‚Рµ, Рѕ С‡С‘Рј РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїРёСЃСЊРјРѕ вЂ” РєРѕРјСѓ, Р·Р°С‡РµРј Рё РєР°РєРёРµ РґРµС‚Р°Р»Рё РІР°Р¶РЅС‹вЂ¦",
+        "Опишите, о чём должно быть письмо — кому, зачем и какие детали важны…",
     },
 
     toneLabels: {
-      Clearer: "РџРѕРЅСЏС‚РЅРµРµ",
-      "More formal": "Р¤РѕСЂРјР°Р»СЊРЅРµРµ",
-      "More casual": "Р‘РѕР»РµРµ СЂР°Р·РіРѕРІРѕСЂРЅРѕ",
-      "More concise": "РљРѕСЂРѕС‡Рµ",
+      Clearer: "Понятнее",
+      "More formal": "Формальнее",
+      "More casual": "Более разговорно",
+      "More concise": "Короче",
     },
 
     lengthLabels: {
-      Short: "РљРѕСЂРѕС‚РєРѕ",
-      Medium: "РЎСЂРµРґРЅРµ",
-      "Bullet points": "РЎРїРёСЃРєРѕРј",
+      Short: "Коротко",
+      Medium: "Средне",
+      "Bullet points": "Списком",
     },
 
     emailToneLabels: {
-      Friendly: "Р”СЂСѓР¶РµР»СЋР±РЅС‹Р№",
-      Professional: "РџСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅС‹Р№",
-      Direct: "РџСЂСЏРјРѕР№",
-      Apologetic: "РР·РІРёРЅСЏСЋС‰РёР№СЃСЏ",
+      Friendly: "Дружелюбный",
+      Professional: "Профессиональный",
+      Direct: "Прямой",
+      Apologetic: "Извиняющийся",
     },
 
-    translatePrefix: "РџРµСЂРµРІРµСЃС‚Рё РЅР°",
+    translatePrefix: "Перевести на",
 
     runLabels: {
-      improve: "РЈР»СѓС‡С€РёС‚СЊ",
-      summarize: "РЎРѕРєСЂР°С‚РёС‚СЊ",
-      translate: "РџРµСЂРµРІРµСЃС‚Рё",
-      email: "РЎРѕР·РґР°С‚СЊ РїРёСЃСЊРјРѕ",
+      improve: "Улучшить",
+      summarize: "Сократить",
+      translate: "Перевести",
+      email: "Создать письмо",
     },
 
-    working: "РћР±СЂР°Р±РѕС‚РєР°вЂ¦",
+    working: "Обработка…",
 
-    resultTitle: "Р РµР·СѓР»СЊС‚Р°С‚",
+    resultTitle: "Результат",
 
-    copy: "РљРѕРїРёСЂРѕРІР°С‚СЊ",
-    copied: "РЎРєРѕРїРёСЂРѕРІР°РЅРѕ",
+    copy: "Копировать",
+    copied: "Скопировано",
 
-    errorPrefix: "Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє вЂ” ",
+    errorPrefix: "Что-то пошло не так — ",
 
     errors: {
       timeout:
-        "РЎРµСЂРІРµСЂ СЃР»РёС€РєРѕРј РґРѕР»РіРѕ РЅРµ РѕС‚РІРµС‡Р°РµС‚. РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰С‘ СЂР°Р·.",
+        "Сервер слишком долго не отвечает. Попробуйте ещё раз.",
       network:
-        "РќРµ СѓРґР°Р»РѕСЃСЊ СЃРІСЏР·Р°С‚СЊСЃСЏ СЃ СЃРµСЂРІРµСЂРѕРј. РџСЂРѕРІРµСЂСЊС‚Рµ СЃРѕРµРґРёРЅРµРЅРёРµ.",
+        "Не удалось связаться с сервером. Проверьте соединение.",
     },
 
     charCounter: (count) => `${count} / ${MAX_INPUT_CHARS}`,
 
     footer:
-      "Р Р°Р±РѕС‚Р°РµС‚ РЅР° AI вЂ” РїСЂРѕРІРµСЂСЏР№С‚Рµ РІР°Р¶РЅС‹Рµ С„Р°РєС‚С‹ РїРµСЂРµРґ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј.",
+      "Работает на AI — проверяйте важные факты перед использованием.",
 
-    nextStepTitle: "Р§С‚Рѕ РґР°Р»СЊС€Рµ?",
+    nextStepTitle: "Что дальше?",
 
     actions: {
-      shorten: "РљРѕСЂРѕС‡Рµ",
-      formal: "Р¤РѕСЂРјР°Р»СЊРЅРµРµ",
-      casual: "Р Р°Р·РіРѕРІРѕСЂРЅРµРµ",
-      improve: "РЈР»СѓС‡С€РёС‚СЊ",
-      shortenMore: "РЎРѕРєСЂР°С‚РёС‚СЊ РµС‰С‘",
-      translate: "РџРµСЂРµРІРµСЃС‚Рё",
-      email: "РџРёСЃСЊРјРѕ",
-      otherLanguage: "Р”СЂСѓРіРѕР№ СЏР·С‹Рє",
-      friendly: "Р”СЂСѓР¶РµР»СЋР±РЅРµРµ",
-      copy: "РљРѕРїРёСЂРѕРІР°С‚СЊ",
+      shorten: "Короче",
+      formal: "Формальнее",
+      casual: "Разговорнее",
+      improve: "Улучшить",
+      shortenMore: "Сократить ещё",
+      translate: "Перевести",
+      email: "Письмо",
+      otherLanguage: "Другой язык",
+      friendly: "Дружелюбнее",
+      copy: "Копировать",
     },
 
-    chooseLanguage: "Р’С‹Р±РµСЂРёС‚Рµ СЏР·С‹Рє",
-    translateAction: "РџРµСЂРµРІРµСЃС‚Рё",
+    chooseLanguage: "Выберите язык",
+    translateAction: "Перевести",
   },
 
   en: {
     eyebrow: "FREE AI TOOLS",
     subtitle:
-      "Four simple AI writing tools вЂ” free, no account.",
+      "Four simple AI writing tools — free, no account.",
 
     tools: {
       improve: "Improve",
@@ -235,11 +234,11 @@ const STRINGS = {
     },
 
     placeholders: {
-      improve: "Paste the text you want to improveвЂ¦",
-      summarize: "Paste the text you want summarizedвЂ¦",
-      translate: "Paste the text you want translatedвЂ¦",
+      improve: "Paste the text you want to improve…",
+      summarize: "Paste the text you want summarized…",
+      translate: "Paste the text you want translated…",
       email:
-        "Describe what the email needs to say вЂ” who it's to, the purpose, any key detailsвЂ¦",
+        "Describe what the email needs to say — who it's to, the purpose, any key details…",
     },
 
     toneLabels: {
@@ -271,14 +270,14 @@ const STRINGS = {
       email: "Write email",
     },
 
-    working: "WorkingвЂ¦",
+    working: "Working…",
 
     resultTitle: "Your result",
 
     copy: "Copy",
     copied: "Copied",
 
-    errorPrefix: "Something went wrong вЂ” ",
+    errorPrefix: "Something went wrong — ",
 
     errors: {
       timeout:
@@ -290,7 +289,7 @@ const STRINGS = {
     charCounter: (count) => `${count} / ${MAX_INPUT_CHARS}`,
 
     footer:
-      "Powered by AI вЂ” double-check anything important.",
+      "Powered by AI — double-check anything important.",
 
     nextStepTitle: "What next?",
 
@@ -909,8 +908,8 @@ function App() {
 
     document.title =
       lang === "ru"
-        ? "Toolkit вЂ” Р‘РµСЃРїР»Р°С‚РЅС‹Рµ AI-РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹"
-        : "Toolkit вЂ” Free AI Tools";
+        ? "Toolkit — Бесплатные AI-инструменты"
+        : "Toolkit — Free AI Tools";
   }, [lang]);
 
   const [activeTool, setActiveTool] =
@@ -975,7 +974,7 @@ function App() {
     if (!currentInput.trim()) {
       setError(
         lang === "ru"
-          ? "РЎРЅР°С‡Р°Р»Р° РІРІРµРґРёС‚Рµ С‚РµРєСЃС‚."
+          ? "Сначала введите текст."
           : "Please enter some text first."
       );
       return;
@@ -1975,6 +1974,5 @@ ReactDOM.createRoot(
 ).render(
   <React.StrictMode>
     <App />
-    <Analytics />
   </React.StrictMode>
 );
