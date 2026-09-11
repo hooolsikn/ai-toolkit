@@ -1,5 +1,6 @@
 ﻿import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
+import { Analytics } from "@vercel/analytics/react";
 
 /* =========================================================================
  * API CLIENT
@@ -1974,5 +1975,6 @@ ReactDOM.createRoot(
 ).render(
   <React.StrictMode>
     <App />
+    <Analytics />
   </React.StrictMode>
 );
