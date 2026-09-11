@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 
 /* =========================================================================
@@ -133,98 +133,98 @@ const LANGUAGE_STORAGE_KEY = "ai-toolkit-language";
 
 const STRINGS = {
   ru: {
-    eyebrow: "БЕСПЛАТНЫЕ AI-ИНСТРУМЕНТЫ",
+    eyebrow: "Р‘Р•РЎРџР›РђРўРќР«Р• AI-РРќРЎРўР РЈРњР•РќРўР«",
     subtitle:
-      "Четыре простых AI-инструмента для текста — бесплатно, без регистрации.",
+      "Р§РµС‚С‹СЂРµ РїСЂРѕСЃС‚С‹С… AI-РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° РґР»СЏ С‚РµРєСЃС‚Р° вЂ” Р±РµСЃРїР»Р°С‚РЅРѕ, Р±РµР· СЂРµРіРёСЃС‚СЂР°С†РёРё.",
 
     tools: {
-      improve: "Улучшить",
-      summarize: "Сократить",
-      translate: "Перевести",
-      email: "Письмо",
+      improve: "РЈР»СѓС‡С€РёС‚СЊ",
+      summarize: "РЎРѕРєСЂР°С‚РёС‚СЊ",
+      translate: "РџРµСЂРµРІРµСЃС‚Рё",
+      email: "РџРёСЃСЊРјРѕ",
     },
 
     placeholders: {
-      improve: "Вставьте текст, который нужно улучшить…",
-      summarize: "Вставьте текст, который нужно сократить…",
-      translate: "Вставьте текст для перевода…",
+      improve: "Р’СЃС‚Р°РІСЊС‚Рµ С‚РµРєСЃС‚, РєРѕС‚РѕСЂС‹Р№ РЅСѓР¶РЅРѕ СѓР»СѓС‡С€РёС‚СЊвЂ¦",
+      summarize: "Р’СЃС‚Р°РІСЊС‚Рµ С‚РµРєСЃС‚, РєРѕС‚РѕСЂС‹Р№ РЅСѓР¶РЅРѕ СЃРѕРєСЂР°С‚РёС‚СЊвЂ¦",
+      translate: "Р’СЃС‚Р°РІСЊС‚Рµ С‚РµРєСЃС‚ РґР»СЏ РїРµСЂРµРІРѕРґР°вЂ¦",
       email:
-        "Опишите, о чём должно быть письмо — кому, зачем и какие детали важны…",
+        "РћРїРёС€РёС‚Рµ, Рѕ С‡С‘Рј РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїРёСЃСЊРјРѕ вЂ” РєРѕРјСѓ, Р·Р°С‡РµРј Рё РєР°РєРёРµ РґРµС‚Р°Р»Рё РІР°Р¶РЅС‹вЂ¦",
     },
 
     toneLabels: {
-      Clearer: "Понятнее",
-      "More formal": "Формальнее",
-      "More casual": "Более разговорно",
-      "More concise": "Короче",
+      Clearer: "РџРѕРЅСЏС‚РЅРµРµ",
+      "More formal": "Р¤РѕСЂРјР°Р»СЊРЅРµРµ",
+      "More casual": "Р‘РѕР»РµРµ СЂР°Р·РіРѕРІРѕСЂРЅРѕ",
+      "More concise": "РљРѕСЂРѕС‡Рµ",
     },
 
     lengthLabels: {
-      Short: "Коротко",
-      Medium: "Средне",
-      "Bullet points": "Списком",
+      Short: "РљРѕСЂРѕС‚РєРѕ",
+      Medium: "РЎСЂРµРґРЅРµ",
+      "Bullet points": "РЎРїРёСЃРєРѕРј",
     },
 
     emailToneLabels: {
-      Friendly: "Дружелюбный",
-      Professional: "Профессиональный",
-      Direct: "Прямой",
-      Apologetic: "Извиняющийся",
+      Friendly: "Р”СЂСѓР¶РµР»СЋР±РЅС‹Р№",
+      Professional: "РџСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅС‹Р№",
+      Direct: "РџСЂСЏРјРѕР№",
+      Apologetic: "РР·РІРёРЅСЏСЋС‰РёР№СЃСЏ",
     },
 
-    translatePrefix: "Перевести на",
+    translatePrefix: "РџРµСЂРµРІРµСЃС‚Рё РЅР°",
 
     runLabels: {
-      improve: "Улучшить",
-      summarize: "Сократить",
-      translate: "Перевести",
-      email: "Создать письмо",
+      improve: "РЈР»СѓС‡С€РёС‚СЊ",
+      summarize: "РЎРѕРєСЂР°С‚РёС‚СЊ",
+      translate: "РџРµСЂРµРІРµСЃС‚Рё",
+      email: "РЎРѕР·РґР°С‚СЊ РїРёСЃСЊРјРѕ",
     },
 
-    working: "Обработка…",
+    working: "РћР±СЂР°Р±РѕС‚РєР°вЂ¦",
 
-    resultTitle: "Результат",
+    resultTitle: "Р РµР·СѓР»СЊС‚Р°С‚",
 
-    copy: "Копировать",
-    copied: "Скопировано",
+    copy: "РљРѕРїРёСЂРѕРІР°С‚СЊ",
+    copied: "РЎРєРѕРїРёСЂРѕРІР°РЅРѕ",
 
-    errorPrefix: "Что-то пошло не так — ",
+    errorPrefix: "Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє вЂ” ",
 
     errors: {
       timeout:
-        "Сервер слишком долго не отвечает. Попробуйте ещё раз.",
+        "РЎРµСЂРІРµСЂ СЃР»РёС€РєРѕРј РґРѕР»РіРѕ РЅРµ РѕС‚РІРµС‡Р°РµС‚. РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰С‘ СЂР°Р·.",
       network:
-        "Не удалось связаться с сервером. Проверьте соединение.",
+        "РќРµ СѓРґР°Р»РѕСЃСЊ СЃРІСЏР·Р°С‚СЊСЃСЏ СЃ СЃРµСЂРІРµСЂРѕРј. РџСЂРѕРІРµСЂСЊС‚Рµ СЃРѕРµРґРёРЅРµРЅРёРµ.",
     },
 
     charCounter: (count) => `${count} / ${MAX_INPUT_CHARS}`,
 
     footer:
-      "Работает на AI — проверяйте важные факты перед использованием.",
+      "Р Р°Р±РѕС‚Р°РµС‚ РЅР° AI вЂ” РїСЂРѕРІРµСЂСЏР№С‚Рµ РІР°Р¶РЅС‹Рµ С„Р°РєС‚С‹ РїРµСЂРµРґ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј.",
 
-    nextStepTitle: "Что дальше?",
+    nextStepTitle: "Р§С‚Рѕ РґР°Р»СЊС€Рµ?",
 
     actions: {
-      shorten: "Короче",
-      formal: "Формальнее",
-      casual: "Разговорнее",
-      improve: "Улучшить",
-      shortenMore: "Сократить ещё",
-      translate: "Перевести",
-      email: "Письмо",
-      otherLanguage: "Другой язык",
-      friendly: "Дружелюбнее",
-      copy: "Копировать",
+      shorten: "РљРѕСЂРѕС‡Рµ",
+      formal: "Р¤РѕСЂРјР°Р»СЊРЅРµРµ",
+      casual: "Р Р°Р·РіРѕРІРѕСЂРЅРµРµ",
+      improve: "РЈР»СѓС‡С€РёС‚СЊ",
+      shortenMore: "РЎРѕРєСЂР°С‚РёС‚СЊ РµС‰С‘",
+      translate: "РџРµСЂРµРІРµСЃС‚Рё",
+      email: "РџРёСЃСЊРјРѕ",
+      otherLanguage: "Р”СЂСѓРіРѕР№ СЏР·С‹Рє",
+      friendly: "Р”СЂСѓР¶РµР»СЋР±РЅРµРµ",
+      copy: "РљРѕРїРёСЂРѕРІР°С‚СЊ",
     },
 
-    chooseLanguage: "Выберите язык",
-    translateAction: "Перевести",
+    chooseLanguage: "Р’С‹Р±РµСЂРёС‚Рµ СЏР·С‹Рє",
+    translateAction: "РџРµСЂРµРІРµСЃС‚Рё",
   },
 
   en: {
     eyebrow: "FREE AI TOOLS",
     subtitle:
-      "Four simple AI writing tools — free, no account.",
+      "Four simple AI writing tools вЂ” free, no account.",
 
     tools: {
       improve: "Improve",
@@ -234,11 +234,11 @@ const STRINGS = {
     },
 
     placeholders: {
-      improve: "Paste the text you want to improve…",
-      summarize: "Paste the text you want summarized…",
-      translate: "Paste the text you want translated…",
+      improve: "Paste the text you want to improveвЂ¦",
+      summarize: "Paste the text you want summarizedвЂ¦",
+      translate: "Paste the text you want translatedвЂ¦",
       email:
-        "Describe what the email needs to say — who it's to, the purpose, any key details…",
+        "Describe what the email needs to say вЂ” who it's to, the purpose, any key detailsвЂ¦",
     },
 
     toneLabels: {
@@ -270,14 +270,14 @@ const STRINGS = {
       email: "Write email",
     },
 
-    working: "Working…",
+    working: "WorkingвЂ¦",
 
     resultTitle: "Your result",
 
     copy: "Copy",
     copied: "Copied",
 
-    errorPrefix: "Something went wrong — ",
+    errorPrefix: "Something went wrong вЂ” ",
 
     errors: {
       timeout:
@@ -289,7 +289,7 @@ const STRINGS = {
     charCounter: (count) => `${count} / ${MAX_INPUT_CHARS}`,
 
     footer:
-      "Powered by AI — double-check anything important.",
+      "Powered by AI вЂ” double-check anything important.",
 
     nextStepTitle: "What next?",
 
@@ -908,8 +908,8 @@ function App() {
 
     document.title =
       lang === "ru"
-        ? "Toolkit — Бесплатные AI-инструменты"
-        : "Toolkit — Free AI Tools";
+        ? "Toolkit вЂ” Р‘РµСЃРїР»Р°С‚РЅС‹Рµ AI-РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹"
+        : "Toolkit вЂ” Free AI Tools";
   }, [lang]);
 
   const [activeTool, setActiveTool] =
@@ -974,7 +974,7 @@ function App() {
     if (!currentInput.trim()) {
       setError(
         lang === "ru"
-          ? "Сначала введите текст."
+          ? "РЎРЅР°С‡Р°Р»Р° РІРІРµРґРёС‚Рµ С‚РµРєСЃС‚."
           : "Please enter some text first."
       );
       return;
