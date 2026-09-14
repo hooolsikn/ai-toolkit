@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ai-toolkit-ebon-chi.vercel.app/sitemap.xml
